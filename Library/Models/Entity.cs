@@ -9,7 +9,11 @@ namespace Library.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
         public bool IsDisabled { get; set; }
+
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime CreationDate { get; set; }
+
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime UpdateDate { get; set; }
     }
 }
