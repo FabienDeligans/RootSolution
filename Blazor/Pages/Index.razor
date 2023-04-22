@@ -1,0 +1,26 @@
+﻿@page "/"
+@using Blazor.Services
+@using Library.Models.Business
+@inject FamilyCallApi FamilyCallApi
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        var family = new Family()
+        {
+            Name = "aaerz"
+        };
+
+        await FamilyCallApi.CreateAsync(family).ConfigureAwait(false); 
+    }
+}
