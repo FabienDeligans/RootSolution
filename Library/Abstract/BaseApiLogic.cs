@@ -24,7 +24,7 @@ namespace FabApi.Logic
 
         public virtual async Task<T> CreateAsync(T entity)
         {
-            entity.CreationDate = DateTime.Now;
+            entity.CreationDate = DateTime.Now.ToLocalTime();
             return await _service.CreateAsync<T>(entity);
         }
 
@@ -32,7 +32,7 @@ namespace FabApi.Logic
         {
             foreach (var entity in entities)
             {
-                entity.CreationDate = DateTime.Now;
+                entity.CreationDate = DateTime.Now.ToLocalTime();
             }
             return await _service.CreateManyAsync(entities);
         }
@@ -59,7 +59,7 @@ namespace FabApi.Logic
 
         public virtual async Task<T> UpdateAsync(T entityUpdate)
         {
-            entityUpdate.UpdateDate = DateTime.Now;
+            entityUpdate.UpdateDate = DateTime.Now.ToLocalTime();
             return await _service.UpdateAsync<T>(entityUpdate);
         }
 

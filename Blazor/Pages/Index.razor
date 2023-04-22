@@ -1,7 +1,7 @@
 ﻿@page "/"
-@using Blazor.Services
 @using Library.Models.Business
-@inject FamilyCallApi FamilyCallApi
+@using Blazor.Services
+@inject FamilyCallApi FamilyCall
 
 <PageTitle>Index</PageTitle>
 
@@ -11,16 +11,43 @@ Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
+<button class="btn btn-info btn-sm" @onclick="AddFamily">Add Family</button>
+<button class="btn btn-danger btn-sm" @onclick="DropFamily">Drop Family</button>
+
+@if (Family != null)
+{
+
+    <div>@Family.Id</div>
+    <div>@Family.Name</div>
+    <div>@Family.CreationDate</div>
+
+}
 
 @code
 {
+    private Family? Family { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-        var family = new Family()
-        {
-            Name = "aaerz"
-        };
+    }
 
-        await FamilyCallApi.CreateAsync(family).ConfigureAwait(false); 
+
+    private async Task AddFamily()
+    {
+        var family = new Family
+            {
+                Name = "qsdxcxcv"
+            };
+
+        Family = await FamilyCall.CreateAsync(family).ConfigureAwait(false);
+        await InvokeAsync(StateHasChanged);
+
+    }
+
+    private async Task DropFamily()
+    {
+        await FamilyCall.DropCollectionAsync();
+        Family = null; 
+        await InvokeAsync(StateHasChanged);
     }
 }
