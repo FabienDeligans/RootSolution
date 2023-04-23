@@ -1,5 +1,5 @@
 ﻿using Api.Services;
-using FabApi.Logic;
+using Library.Abstract;
 using Library.Models.Business;
 
 namespace Api.Logics

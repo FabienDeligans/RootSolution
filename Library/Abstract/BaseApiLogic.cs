@@ -1,7 +1,7 @@
 ﻿using Library.Interfaces;
 using Library.Models;
 
-namespace FabApi.Logic
+namespace Library.Abstract
 {
     public abstract class BaseApiLogic<T> : IApiLogic<T> where T : IEntity
     {
