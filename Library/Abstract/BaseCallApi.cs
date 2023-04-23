@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using System.Net.Mime;
 using System.Text;
-using System.Threading.Tasks;
 using Library.Interfaces;
 using Library.Models;
 using Library.Settings;

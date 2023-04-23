@@ -13,11 +13,11 @@ namespace Blazor
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
 
+            // R�cup�re la route principale de l'api dans "appsettings.json"
             builder.Services.Configure<SettingsCallApi>(builder.Configuration.GetSection("Api"));
 
-
-            builder.Services.AddHttpClient<FamilyCallApi>(); 
-
+            // Permet � FamilleCallApi d'apeller l'api
+            builder.Services.AddHttpClient<FamilyCallApi>();
 
             var app = builder.Build();
 
@@ -37,6 +37,7 @@ namespace Blazor
 
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
+            app.UseAuthentication(); ;
 
             app.Run();
         }
