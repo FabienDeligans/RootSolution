@@ -1,5 +1,9 @@
+using Blazor.Areas.Identity.Data;
 using Blazor.Services;
 using Library.Settings;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Blazor.Data;
 
 namespace Blazor
 {
@@ -8,6 +12,17 @@ namespace Blazor
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var connectionString = builder.Configuration
+                .GetConnectionString("BlazorAuthContextConnection") ?? throw new InvalidOperationException("Connection string 'BlazorAuthContextConnection' not found.");
+
+            builder.Services.AddDbContext<BlazorAuthContext>(options =>
+                options.UseSqlServer(connectionString));
+
+            builder.Services.AddIdentity<User, IdentityRole>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<BlazorAuthContext>()
+                .AddDefaultTokenProviders();
 
             // Add services to the container.
             builder.Services.AddRazorPages();
